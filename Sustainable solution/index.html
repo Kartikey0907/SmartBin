@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartBin AI - Intelligent Waste Monitoring System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-robot"></i>
+                <span>SmartBin <span class="logo-accent">AI</span></span>
+            </div>
+            <div class="nav-links" id="navLinks">
+                <a href="#overview" class="nav-link active">Overview</a>
+                <a href="#dashboard" class="nav-link">Dashboard</a>
+                <a href="#analytics" class="nav-link">Analytics</a>
+                <a href="#impact" class="nav-link">Impact</a>
+            </div>
+            <div class="nav-status">
+                <span class="status-dot online"></span>
+                <span>System Online</span>
+            </div>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <section id="overview" class="hero">
+        <div class="hero-bg">
+            <div class="hero-particle" style="top:10%;left:5%;width:6px;height:6px;animation-delay:0s;"></div>
+            <div class="hero-particle" style="top:20%;left:85%;width:8px;height:8px;animation-delay:1s;"></div>
+            <div class="hero-particle" style="top:60%;left:15%;width:5px;height:5px;animation-delay:2s;"></div>
+            <div class="hero-particle" style="top:75%;left:75%;width:7px;height:7px;animation-delay:0.5s;"></div>
+            <div class="hero-particle" style="top:40%;left:50%;width:4px;height:4px;animation-delay:1.5s;"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-badge">
+                <i class="fas fa-leaf"></i>
+                <span>Edge AI · Smart Campus · Zero Waste</span>
+            </div>
+            <h1 class="hero-title">
+                Intelligent Waste<br>
+                <span class="gradient-text">Monitoring System</span>
+            </h1>
+            <p class="hero-subtitle">
+                Real-time AI-powered waste segregation monitoring for campus hostels and cafeterias. 
+                Reducing landfill impact through smart feedback and data-driven decisions.
+            </p>
+            <div class="hero-actions">
+                <a href="#dashboard" class="btn btn-primary">
+                    <i class="fas fa-chart-line"></i>
+                    View Live Dashboard
+                </a>
+                <a href="#impact" class="btn btn-secondary">
+                    <i class="fas fa-globe-asia"></i>
+                    See Our Impact
+                </a>
+            </div>
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <span class="hero-stat-value" id="statDiverted">0</span>
+                    <span class="hero-stat-label">kg Diverted</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-value" id="statCompliance">0<span>%</span></span>
+                    <span class="hero-stat-label">Compliance Rate</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-value" id="statInterventions">0</span>
+                    <span class="hero-stat-label">Interventions</span>
+                </div>
+                <div class="hero-stat">
+                    <span class="hero-stat-value" id="statCO2e">0<span>t</span></span>
+                    <span class="hero-stat-label">CO₂e Avoided</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="dashboard" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Live Monitoring Dashboard</h2>
+                <p>Real-time waste detection and segregation monitoring across campus</p>
+            </div>
+
+            <div class="bin-grid">
+                <div class="bin-card" data-bin="wet" data-location="Hostel A - Mess">
+                    <div class="bin-header">
+                        <div class="bin-type-icon">
+                            <i class="fas fa-apple-alt"></i>
+                        </div>
+                        <div class="bin-info">
+                            <h3>Wet Waste Bin</h3>
+                            <span class="bin-location"><i class="fas fa-map-pin"></i> Hostel A - Mess</span>
+                        </div>
+                        <div class="bin-status-indicator" id="binStatus-wet">
+                            <span class="status-label">Monitoring</span>
+                        </div>
+                    </div>
+                    <div class="bin-visual">
+                        <div class="bin-camera-feed" id="cameraFeed-wet">
+                            <div class="camera-overlay">
+                                <div class="scan-line"></div>
+                                <div class="detection-box" id="detectionBox-wet"></div>
+                            </div>
+                            <div class="camera-placeholder">
+                                <i class="fas fa-camera"></i>
+                                <span>AI Vision Active</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bin-feedback" id="feedback-wet">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Correct disposal detected</span>
+                    </div>
+                    <div class="bin-stats-row">
+                        <div class="bin-stat">
+                            <span class="bin-stat-label">Fill Level</span>
+                            <div class="fill-bar">
+                                <div class="fill-progress" id="fillLevel-wet" style="width: 62%"></div>
+                            </div>
+                            <span class="bin-stat-value" id="fillValue-wet">62%</span>
+                        </div>
+                        <div class="bin-stat">
+                            <span class="bin-stat-label">Today's Deposits</span>
+                            <span class="bin-stat-value large" id="deposits-wet">47</span>
+                        </div>
+                        <div class="bin-stat">
+                            <span class="bin-stat-label">Contamination</span>
+                            <span class="bin-stat-value large" id="contamination-wet">12%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bin-card" data-bin="dry" data-location="Hostel B - Cafeteria">
+                    <div class="bin-header">
+                        <div class="bin-type-icon">
+                            <i class="fas fa-box-open"></i>
+                        </div>
+                        <div class="bin-info">
+                            <h3>Dry Waste Bin</h3>
+                            <span class="bin-location"><i class="fas fa-map-pin"></i> Hostel B - Cafeteria</span>
+                        </div>
+                        <div class="bin-status-indicator" id="binStatus-dry">
+                            <span class="status-label">Monitoring</span>
+                        </div>
+                    </div>
+                    <div class="bin-visual">
+                        <div class="bin-camera-feed" id="cameraFeed-dry">
+                            <div class="camera-overlay">
+                                <div class="scan-line"></div>
+                                <div class="detection-box" id="detectionBox-dry"></div>
+                            </div>
+                            <div class="camera-placeholder">
+                                <i class="fas fa-camera"></i>
+                                <span>AI Vision Active</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bin-feedback" id="feedback-dry">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Correct disposal detected</span>
+                    </div>
+                    <div class="bin-stats-row">
+                        <div class="bin-stat">
+                            <span class="bin-stat-label">Fill Level</span>
+                            <div class="fill-bar">
+                                <div class="fill-progress" id="fillLevel-dry" style="width: 45%"></div>
+                            </div>
+                            <span class="bin-stat-value" id="fillValue-dry">45%</span>
+                        </div>
+                        <div class="bin-stat">
+                            <span class="bin-stat-label">Today's Deposits</span>
+                            <span class="bin-stat-value large" id="deposits-dry">38</span>
+                        </div>
+                        <div class="bin-stat">
+                            <span class="bin-stat-label">Contamination</span>
+                            <span class="bin-stat-value large" id="contamination-dry">8%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bin-card" data-bin="plastic" data-location="Main Cafeteria">
+                    <div class="bin-header">
+                        <div class="bin-type-icon">
+                            <i class="fas fa-bottle-water"></i>
+                        </div>
+                        <div class="bin-info">
+                            <h3>Plastic/Recyclable Bin</h3>
+                            <span class="bin-location"><i class="fas fa-map-pin"></i> Main Cafeteria</span>
+                        </div>
+                        <div class="bin-status-indicator" id="binStatus-plastic">
+                            <span class="status-label">Monitoring</span>
+                        </div>
+                    </div>
+                    <div class="bin-visual">
+                        <div class="bin-camera-feed" id="cameraFeed-plastic">
+                            <div class="camera-overlay">
+                                <div class="scan-line"></div>
+                                <div class="detection-box" id="detectionBox-plastic"></div>
+                            </div>
+                            <div class="camera-placeholder">
+                                <i class="fas fa-camera"></i>
+                                <span>AI Vision Active</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bin-feedback" id="feedback-plastic">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Correct disposal detected</span>
+                    </div>
+                    <div class="bin-stats-row">
+                        <div class="bin-stat">
+                            <span class="bin-stat-label">Fill Level</span>
+                            <div class="fill-bar">
+                                <div class="fill-progress" id="fillLevel-plastic" style="width: 78%"></div>
+                            </div>
+                            <span class="bin-stat-value" id="fillValue-plastic">78%</span>
+                        </div>
+                        <div class="bin-stat">
+                            <span class="bin-stat-label">Today's Deposits</span>
+                            <span class="bin-stat-value large" id="deposits-plastic">53</span>
+                        </div>
+                        <div class="bin-stat">
+                            <span class="bin-stat-label">Contamination</span>
+                            <span class="bin-stat-value large" id="contamination-plastic">18%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="activity-feed-card">
+                <div class="activity-header">
+                    <h3><i class="fas fa-stream"></i> Real-Time Activity Feed</h3>
+                    <span class="activity-count" id="activityCount">0 events today</span>
+                </div>
+                <div class="activity-list" id="activityList">
+                    <div class="activity-item placeholder">
+                        <i class="fas fa-circle"></i>
+                        <span>Waiting for activity data...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="analytics" class="section section-dark">
+        <div class="container">
+            <div class="section-header">
+                <h2>Waste Analytics</h2>
+                <p>Data-driven insights for campus waste management decisions</p>
+            </div>
+
+            <div class="analytics-grid">
+                <div class="chart-card wide">
+                    <div class="chart-header">
+                        <h3>Hourly Waste Deposition Pattern</h3>
+                        <div class="chart-controls">
+                            <button class="chart-btn active" data-period="day">Day</button>
+                            <button class="chart-btn" data-period="week">Week</button>
+                            <button class="chart-btn" data-period="month">Month</button>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="hourlyChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3>Waste Composition</h3>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="compositionChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="chart-card">
+                    <div class="chart-header">
+                        <h3>Compliance Trend</h3>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="complianceChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="insights-grid">
+                <div class="insight-card">
+                    <div class="insight-icon insight-peak">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h4>Peak Hours Identified</h4>
+                    <p>Highest waste generation occurs between <strong>12:00-13:00</strong> and <strong>19:00-20:00</strong>. Consider scheduling additional janitorial staff during these windows.</p>
+                </div>
+                <div class="insight-card">
+                    <div class="insight-icon insight-warning">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <h4>Contamination Hotspot</h4>
+                    <p><strong>Main Cafeteria Plastic Bin</strong> shows 18% contamination rate. Recommend improved signage and targeted awareness campaign at this location.</p>
+                </div>
+                <div class="insight-card">
+                    <div class="insight-icon insight-success">
+                        <i class="fas fa-trend-up"></i>
+                    </div>
+                    <h4>Improvement Trend</h4>
+                    <p>Overall compliance has improved <strong>7%</strong> since system deployment. Real-time feedback is proving effective in behavior modification.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="impact" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Environmental Impact</h2>
+                <p>Measurable results from the SmartBin AI deployment</p>
+            </div>
+
+            <div class="impact-grid">
+                <div class="impact-card">
+                    <div class="impact-icon">
+                        <i class="fas fa-trash-alt"></i>
+                    </div>
+                    <div class="impact-value" id="impactLandfill">0</div>
+                    <div class="impact-label">kg Waste Diverted<br>from Landfill</div>
+                    <div class="impact-trend positive">
+                        <i class="fas fa-arrow-down"></i> 34% reduction
+                    </div>
+                </div>
+                <div class="impact-card">
+                    <div class="impact-icon">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <div class="impact-value" id="impactCompost">0</div>
+                    <div class="impact-label">kg Organic Waste<br>Composted</div>
+                    <div class="impact-trend positive">
+                        <i class="fas fa-arrow-up"></i> 28% increase
+                    </div>
+                </div>
+                <div class="impact-card">
+                    <div class="impact-icon">
+                        <i class="fas fa-smog"></i>
+                    </div>
+                    <div class="impact-value" id="impactMethane">0</div>
+                    <div class="impact-label">kg Methane Emissions<br>Avoided</div>
+                    <div class="impact-trend positive">
+                        <i class="fas fa-arrow-down"></i> 12.4t CO₂e
+                    </div>
+                </div>
+                <div class="impact-card">
+                    <div class="impact-icon">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <div class="impact-value" id="impactCost">₹0</div>
+                    <div class="impact-label">Landfill Fees<br>Saved</div>
+                    <div class="impact-trend positive">
+                        <i class="fas fa-arrow-up"></i> 22% savings
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-card">
+                <h3><i class="fas fa-road"></i> Project Roadmap</h3>
+                <div class="timeline">
+                    <div class="timeline-item completed">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <span class="timeline-date">Phase 1</span>
+                            <h4>Hardware Installation</h4>
+                            <p>Camera modules mounted at 3 pilot locations</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item completed">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <span class="timeline-date">Phase 2</span>
+                            <h4>AI Model Training</h4>
+                            <p>Object detection model trained on waste dataset (92% accuracy)</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item active">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <span class="timeline-date">Phase 3</span>
+                            <h4>Pilot Deployment</h4>
+                            <p>Live monitoring at Hostel A, B & Main Cafeteria</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <span class="timeline-date">Phase 4</span>
+                            <h4>Campus-Wide Rollout</h4>
+                            <p>Expand to all 12 campus locations</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <span class="timeline-date">Phase 5</span>
+                            <h4>Open Source Release</h4>
+                            <p>Share system design for adoption by other institutions</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <i class="fas fa-robot"></i>
+                    <span>SmartBin <span class="logo-accent">AI</span></span>
+                </div>
+                <p class="footer-text">Building smarter, more sustainable campuses through edge AI and real-time feedback.</p>
+                <div class="footer-tags">
+                    <span class="tag">#EdgeAI</span>
+                    <span class="tag">#SmartCampus</span>
+                    <span class="tag">#ZeroWaste</span>
+                    <span class="tag">#SustainableSolution</span>
+                </div>
+                <p class="footer-copy">© 2026 SmartBin AI — Sustainable Campus Initiative</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="api-client.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
